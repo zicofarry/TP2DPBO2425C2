@@ -18,7 +18,8 @@
 #define BRIGHT_CYAN         "\033[96m"     // Cyan Terang
 
 // Declare global variable for set the length of the column
-int colId = 2, colName = 4, colCategory = 8, colPrice = 5;
+// int colId = 2, colName = 4, colCategory = 8, colPrice = 5;
+int _cols[] = {2, 4, 5, 5, 5, 8, 5, 2, 7, 3};
 
 // Procedure to show the intro
 void intro(){
@@ -115,26 +116,26 @@ void help() {
     cout << "||             |  SEARCH  |                                               ||\n";
     cout << "||             +----------+                                               ||\n";
     cout << "||                                                                        ||\n";
-    cout << "||     2. Jika Anda Memilih INSERT. Maka Tulis Nama, Kategori, dan        ||\n";
+    cout << "||     2. Jika Anda Memilih INSERT. Maka Tulis name, Kategori, dan        ||\n";
     cout << "||        Harga (String Wajib Diapit Dengan Tanda Petik Dua,              ||\n";
     cout << "||        CTH: \"Handphone\")                                               ||\n";
     cout << "||        FORMAT QUERY :                                                  ||\n";
-    cout << "||          INSERT \"[Nama]\" \"[Kategori]\" [Harga]                          ||\n";
+    cout << "||          INSERT \"[name]\" \"[Kategori]\" [Harga]                          ||\n";
     cout << "||                                                                        ||\n";
-    cout << "||     3. Jika Anda Memilih UPDATE. Maka Tulis ID, Nama, Kategori         ||\n";
+    cout << "||     3. Jika Anda Memilih UPDATE. Maka Tulis ID, name, Kategori         ||\n";
     cout << "||        dan Harga (String Wajib Diapit Dengan Tanda Petik Dua,          ||\n";
     cout << "||        CTH: \"Handphone\")                                               ||\n";
     cout << "||        FORMAT QUERY :                                                  ||\n";
-    cout << "||          UPDATE [ID] \"[Nama]\" \"[Kategori]\" [Harga]                     ||\n";
+    cout << "||          UPDATE [ID] \"[name]\" \"[Kategori]\" [Harga]                     ||\n";
     cout << "||                                                                        ||\n";
     cout << "||     4. Jika Anda Memilih DELETE, Cukup Tulis ID Nya Saja.              ||\n";
     cout << "||        FORMAT QUERY :                                                  ||\n";
     cout << "||          DELETE [ID]                                                   ||\n";
     cout << "||                                                                        ||\n";
-    cout << "||     5. Jika Anda Memilih SEARCH. Maka Cukup Tuliskan Nama.             ||\n";
+    cout << "||     5. Jika Anda Memilih SEARCH. Maka Cukup Tuliskan name.             ||\n";
     cout << "||        (String Wajib Diapit Dengan Tanda Petik Dua, CTH: \"Handphone\")  ||\n";
     cout << "||        FORMAT QUERY :                                                  ||\n";
-    cout << "||          SEARCH \"[Nama]\"                                               ||\n";
+    cout << "||          SEARCH \"[name]\"                                               ||\n";
     cout << "||                                                                        ||\n";
     cout << "||                                                                        ||\n";
     cout << "|+------------------------------------------------------------------------+|\n";
@@ -142,161 +143,149 @@ void help() {
 }
 
 // Procedure to print the header
-void head(int col1, int col2, int col3, int col4){
-    cout << "+-"; for(int i = 0; i < col1; i++) cout << "-";
-    cout << "-+-"; for(int i = 0; i < col2; i++) cout << "-";
-    cout << "-+-"; for(int i = 0; i < col3; i++) cout << "-";
-    cout << "-+-"; for(int i = 0; i < col4; i++) cout << "-";
-    cout << "-+" << endl;
-
-    cout << "| "; for(int i = 0; i < col1 - 2; i+=2) cout << " ";
-    cout << "ID"; for(int i = 0; i < col1 - 2; i+=2) cout << " ";
-    cout << " | "; for(int i = 0; i < col2 - 4; i+=2) cout << " ";
-    cout << "NAME"; for(int i = 0; i < col2 - 4; i+=2) cout << " ";
-    cout << " | "; for(int i = 0; i < col3 - 8; i+=2) cout << " ";
-    cout << "CATEGORY"; for(int i = 0; i < col3 - 8; i+=2) cout << " ";
-    cout << " | "; for(int i = 0; i < col4 - 5; i+=2) cout << " ";
-    cout << "PRICE"; for(int i = 0; i < col4 - 5; i+=2) cout << " ";
+void head(int cols[]){
+    cout << "+-"; for (int i = 0; i < cols[0]; i++) cout << "-";
+    for (int i = 1; i < 10; i++) {
+        cout << "-+-"; for (int j = 0; j < cols[i]; j++) cout << "-";
+    } cout << "-+" << endl;
+    cout << "| "; for (int i = 0; i < cols[0] - 2; i+=2) cout << " ";
+    cout << "ID"; for (int i = 0; i < cols[0] - 2; i+=2) cout << " ";
+    cout << " | "; for (int i = 0; i < cols[1] - 4; i+=2) cout << " ";
+    cout << "NAME"; for (int i = 0; i < cols[1] - 4; i+=2) cout << " ";
+    cout << " | "; for (int i = 0; i < cols[2] - 5; i+=2) cout << " ";
+    cout << "PRICE"; for (int i = 0; i < cols[2] - 5; i+=2) cout << " ";
+    cout << " | "; for (int i = 0; i < cols[3] - 5; i+=2) cout << " ";
+    cout << "STOCK"; for (int i = 0; i < cols[3] - 5; i+=2) cout << " ";
+    cout << " | "; for (int i = 0; i < cols[4] - 5; i+=2) cout << " ";
+    cout << "BRAND"; for (int i = 0; i < cols[4] - 5; i+=2) cout << " ";
+    cout << " | "; for (int i = 0; i < cols[5] - 8; i+=2) cout << " ";
+    cout << "WARRANTY"; for (int i = 0; i < cols[5] - 8; i+=2) cout << " ";
+    cout << " | "; for (int i = 0; i < cols[6] - 5; i+=2) cout << " ";
+    cout << "POWER"; for (int i = 0; i < cols[6] - 5; i+=2) cout << " ";
+    cout << "| "; for (int i = 0; i < cols[7] - 2; i+=2) cout << " ";
+    cout << "OS"; for (int i = 0; i < cols[7] - 2; i+=2) cout << " ";
+    cout << " | "; for (int i = 0; i < cols[8] - 7; i+=2) cout << " ";
+    cout << "STORAGE"; for (int i = 0; i < cols[8]- 7; i+=2) cout << " ";
+    cout << "| "; for (int i = 0; i < cols[9] - 3; i+=2) cout << " ";
+    cout << "RAM"; for (int i = 0; i < cols[9] - 3; i+=2) cout << " ";
     cout << " |" << endl;
-
-
-    cout << "+-"; for(int i = 0; i < col1; i++) cout << "-";
-    cout << "-+-"; for(int i = 0; i < col2; i++) cout << "-";
-    cout << "-+-"; for(int i = 0; i < col3; i++) cout << "-";
-    cout << "-+-"; for(int i = 0; i < col4; i++) cout << "-";
-    cout << "-+" << endl;
+    cout << "+-"; for (int i = 0; i < cols[0]; i++) cout << "-";
+    for (int i = 1; i < 10; i++) {
+        cout << "-+-"; for (int j = 0; j < cols[i]; j++) cout << "-";
+    } cout << "-+" << endl;
 }
 
 // Procedure to print rows
-void row(int id, string name, string category, int price, int col1, int col2, int col3, int col4){
-    cout << "| "; for(int i = 0; i < col1 - to_string(id).length(); i++) cout << " ";
-    cout << id <<  " | " << name; for(int i = 0; i < col2 - name.length(); i++) cout << " ";
-    cout << " | " << category; for(int i = 0; i < col3 - category.length(); i++) cout << " ";
-    cout << " | "; for(int i = 0; i < col4 - to_string(price).length(); i++) cout << " ";
-    cout << price << " |" << endl;
+void row(SmartDevice data){
+    cout << "| "; for (int i = 0; i < _cols[0] - to_string(data.getId()).length(); i++) cout << " ";
+    cout << data.getId() << " | " << data.getName(); for (int i = 0; i < _cols[1] - data.getName().length(); i++) cout << " ";
+    cout << " | "; for (int i = 0; i < _cols[2] - to_string(data.getPrice()).length(); i++) cout << " ";
+    cout << data.getPrice() << " | "; for (int i = 0; i < _cols[3] - to_string(data.getStock()) .length(); i++) cout << " ";
+    cout << data.getStock(); 
+    cout << " | " << data.getBrand(); for (int i = 0; i < _cols[4] - data.getBrand().length(); i++) cout << " ";
+    cout << " | "; for (int i = 0; i < _cols[5] - to_string(data.getWarranty()).length(); i++) cout << " ";
+    cout << data.getWarranty() << " | "; for (int i = 0; i < _cols[6] - to_string(data.getPower()).length(); i++) cout << " ";
+    cout << data.getPower(); 
+    cout << " | " << data.getOS(); for (int i = 0; i < _cols[7] - data.getOS().length(); i++) cout << " ";
+    cout << " | "; for (int i = 0; i < _cols[8] - to_string(data.getStorage()).length(); i++) cout << " ";
+    cout << data.getStorage() << " | "; for (int i = 0; i < _cols[9] - to_string(data.getRAM()).length(); i++) cout << " ";
+    cout << data.getRAM() << " |" << endl;
 }
 
 // Procedure to print footer
-void foot(int col1, int col2, int col3, int col4){
-    cout << "+-"; for(int i = 0; i < col1; i++) cout << "-";
-    cout << "-+-"; for(int i = 0; i < col2; i++) cout << "-";
-    cout << "-+-"; for(int i = 0; i < col3; i++) cout << "-";
-    cout << "-+-"; for(int i = 0; i < col4; i++) cout << "-";
-    cout << "-+" << endl;
+void foot(int cols[]){
+    cout << "+-"; for (int i = 0; i < _cols[0]; i++) cout << "-";
+    for (int i = 1; i < 10; i++) {
+        cout << "-+-"; for (int j = 0; j < _cols[i]; j++) cout << "-";
+    } cout << "-+" << endl;
 }
 
 // Procedure to count the length of the column
-void cLeng(vector<Electronic> v){
-    // reset the length of the column
-    colId = 2, colName = 4, colCategory = 8, colPrice = 5;
-
-    // loop for each row
-    for(Electronic i: v){
-        // find the longest, if its odd then plus 1
-        colId = max(colId, static_cast<int>(to_string(i.getId()).length())); if(colId % 2 == 1) colId++;
-        colName = max(colName, static_cast<int>(i.getName().length())); if(colName % 2 == 1) colName++;
-        colCategory = max(colCategory, static_cast<int>(i.getCategory().length())); if(colCategory % 2 == 1) colCategory++;
-        colPrice = max(colPrice, static_cast<int>(to_string(i.getPrice()).length())); if(colPrice % 2 == 0) colPrice++;
+void cLeng(vector<SmartDevice> v){
+    // 2 4 5 5 5 8 5 2 7 3 
+    _cols[0] = 2, _cols[1] = 4, _cols[2] = 5, _cols[3] = 5, _cols[4] = 5,
+    _cols[5] = 8, _cols[6] = 5, _cols[7] = 2, _cols[8] = 7, _cols[9] = 3;
+    for (auto& i : v) {
+        _cols[0] = max(_cols[0], static_cast<int>(to_string(i.getId()).length())); if (_cols[0] % 2 == 1) _cols[0]++;
+        _cols[1] = max(_cols[1], static_cast<int>(i.getName().length())); if (_cols[1] % 2 == 1) _cols[1]++;
+        _cols[2] = max(_cols[2], static_cast<int>(to_string(i.getPrice()).length())); if (_cols[2] % 2 == 0) _cols[2]++;
+        _cols[3] = max(_cols[3], static_cast<int>(to_string(i.getStock()).length())); if (_cols[3] % 2 == 0) _cols[3]++;
+        _cols[4] = max(_cols[4], static_cast<int>(i.getBrand().length())); if (_cols[4] % 2 == 0) _cols[4]++;
+        _cols[5] = max(_cols[5], static_cast<int>(to_string(i.getWarranty()).length())); if (_cols[5] % 2 == 1) _cols[5]++;
+        _cols[6] = max(_cols[6], static_cast<int>(to_string(i.getPower()).length())); if (_cols[6] % 2 == 1) _cols[6]++;
+        _cols[7] = max(_cols[7], static_cast<int>(i.getOS().length())); if (_cols[7] % 2 == 1) _cols[7]++;
+        _cols[8] = max(_cols[8], static_cast<int>(to_string(i.getStorage()).length())); if (_cols[8] % 2 == 1) _cols[8]++;
+        _cols[9] = max(_cols[9], static_cast<int>(to_string(i.getRAM()).length())); if (_cols[9] % 2 == 0) _cols[9]++;
     }
 }
 
 int main(){
-    cout << "=== Electronic ===\n";
-    Electronic e1(1, "Laptop", "Computer", 7500000);
-    e1.showInfo();
-    cout << "\n\n";
+    // // cout << "=== Electronic ===\n";
+    // Electronic e1(1, "Laptop", "Computer", 7500000);
+    // e1.showInfo();
+    // cout << "\n\n";
 
-    cout << "=== Device ===\n";
-    Device d1(2, "Smartphone", "Gadget", 5000000, "Samsung", 24, 15);
-    d1.showInfo();
-    cout << "\n\n";
+    // // cout << "=== Device ===\n";
+    // Device d1(2, "Smartphone", "Gadget", 5000000, "Samsung", 24, 15);
+    // d1.showInfo();
+    // cout << "\n\n";
 
-    cout << "=== SmartDevice ===\n";
-    SmartDevice s1(3, "Tablet", "Gadget", 6000000, "Apple", 12, 10,
-                   "iPadOS", 256, 8);
-    s1.showInfo();
-    cout << "\n\n";
+    // // cout << "=== SmartDevice ===\n";
+    // SmartDevice s1(3, "Tablet", "Gadget", 6000000, "Apple", 12, 10, "iPadOS", 256, 8);
+    // s1.showInfo();
+    // cout << "\n\n";
 
-    cout << "=== Polymorphism ===\n";
-    Electronic* e2 = new SmartDevice(4, "Smart TV", "Entertainment", 10000000,
-                                     "LG", 24, 150, "webOS", 512, 16);
-    e2->showInfo(); // akan manggil SmartDevice::showInfo
-    cout << "\n";
+    // // cout << "=== Polymorphism ===\n";
+    // Electronic* e2 = new SmartDevice(4, "Smart TV", "Entertainment", 10000000, "LG", 24, 150, "webOS", 512, 16);
+    // e2->showInfo(); 
+    // cout << "\n";
 
-    delete e2;
-    // int idx = 1;
-    // vector<Electronic> v;
-    // string input;
-    // help(); intro();
-    // do{
-    //     cout << "Electro Shop >> "; cin >> input;
-    //     transform(input.begin(), input.end(), input.begin(), ::toupper);
+    int idx = 6;
+    vector<SmartDevice> v;
+    
+    v.push_back(SmartDevice(1, "Galaxy S24", 15000000, 21, "Samsung", 24, 25, "Android 14", 256, 12));
+    v.push_back(SmartDevice(2, "iPhone 15 Pro", 20000000, 22, "Apple", 12, 20, "iOS 17", 512, 8));
+    v.push_back(SmartDevice(3, "ThinkPad X1", 25000000, 23, "Lenovo", 36, 65, "Windows 11", 1024, 32));
+    v.push_back(SmartDevice(4, "iPad Air 5", 12000000, 24, "Apple", 18, 30, "iPadOS 17", 256, 8));
+    v.push_back(SmartDevice(5, "LG OLED CX", 18000000, 25, "LG", 24, 150, "webOS", 512, 16));
+    string input;
+    help(); intro();
+    do{
+        cout << "Electro Shop >> "; cin >> input;
+        transform(input.begin(), input.end(), input.begin(), ::toupper);
 
-    //     // Condition if its not "EXIT"
-    //     if(input != "EXIT"){
-    //         Electronic now;
-    //         int price;
-    //         string name, category;
+        // Condition if its not "EXIT"
+        if(input != "EXIT"){
+            Electronic now;
+            int price;
+            string name, category;
 
-    //         if(input == "INSERT"){
-    //             cin.ignore(); getline(cin, name, '"'); getline(cin, name, '"');
-    //             cin.ignore(); getline(cin, category, '"'); getline(cin, category, '"');
-    //             cin >> price;
-    //             now = Electronic(idx, name, category, price);
-    //             v.push_back(now); idx++;
-    //             cout << "SUCCESS: A new data has been added, lalala yeyeyeye~\n\n";
-    //         }else if(input == "UPDATE"){
-    //             int id; cin >> id;
-    //             cin.ignore(); getline(cin, name, '"'); getline(cin, name, '"');
-    //             cin.ignore(); getline(cin, category, '"'); getline(cin, category, '"');
-    //             cin >> price;
-
-    //             // Updating the data
-    //             v[id - 1].setName(name);
-    //             v[id - 1].setCategory(category);
-    //             v[id - 1].setPrice(price);
-    //             cout << "SUCCESS: Data with id " << id << " has been updated, lalala yeyeyeye~\n\n";
-    //         }else if(input == "DELETE"){
-    //             int id; cin >> id;
-    //             v.erase(v.begin() + id - 1);
-    //             cout << "SUCCESS: Data with id " << id << " has been deleted, lalala yeyeyeye~\n\n";
-    //         }else if(input == "SEARCH"){
-    //             cin.ignore(); getline(cin, name, '"'); getline(cin, name, '"');
-    //             if(v.size() == 0) cout << "Data is empty!\n\n";
-    //             else{
-    //                 int i = 0;
-    //                 bool found = false;
-    //                 while(i < v.size() && !found){
-    //                     if(v[i].getName() == name){
-    //                         found = true;
-    //                         int nowId = max(2, static_cast<int>(to_string(v[i].getId()).length())); if(nowId % 2 == 1) nowId++;
-    //                         int nowName = max(4, static_cast<int>(v[i].getName().length())); if(nowName % 2 == 1) nowName++;
-    //                         int nowCategory = max(8, static_cast<int>(v[i].getCategory().length())); if(nowCategory % 2 == 1) nowCategory++;
-    //                         int nowPrice = max(5, static_cast<int>(to_string(v[i].getPrice()).length())); if(nowPrice % 2 == 0) nowPrice++;
-    //                         head(nowId, nowName, nowCategory, nowPrice);
-    //                         row(v[i].getId(), v[i].getName(), v[i].getCategory(), v[i].getPrice(), nowId, nowName, nowCategory, nowPrice);
-    //                         foot(nowId, nowName, nowCategory, nowPrice);
-    //                     }else{
-    //                         i++;
-    //                     }
-    //                 }
-
-    //                 if(!found) cout << "ERROR: Data with name '" << name << "' not found!\n\n";
-    //             }
-    //         }else if(input == "SHOW"){
-    //             cLeng(v);
-    //             if(v.size() == 0) cout << "Data is empty!\n\n";
-    //             else{
-    //                 head(colId, colName, colCategory, colPrice);
-    //                 for(Electronic i : v) row(i.getId(), i.getName(), i.getCategory(), i.getPrice(), colId, colName, colCategory, colPrice);
-    //                 foot(colId, colName, colCategory, colPrice);
-    //                 cout << "Displaying " << v.size() << " record(s).\n\n";
-    //             }
-    //         }else if(input == "HELP"){
-    //             help();
-    //         }else cout << "ERROR: Command not found!\n\n";
-    //     }
-    // }while(input != "EXIT");
-    // outro();
+            if(input == "INSERT"){
+            int price, stock, warranty, power, storage, ram;
+            string name, brand, os;
+            cin.ignore(); getline(cin, name, '"'); getline(cin, name, '"');
+            cin >> price >> stock;
+            cin.ignore(); getline(cin, brand, '"'); getline(cin, brand, '"');
+            cin >> warranty >> power;
+            cin.ignore(); getline(cin, os, '"'); getline(cin, os, '"');
+            cin >> storage >> ram;
+            SmartDevice data = SmartDevice (idx, name, price, stock, brand, warranty, power, os, storage, ram);
+            v.push_back(data); idx++;
+                cout << "SUCCESS: A new data has been added, lalala yeyeyeye~\n\n";
+            }else if(input == "SHOW"){
+                cLeng(v);
+                if(v.size() == 0) cout << "Data is empty!\n\n";
+                else{
+                    head(_cols);
+                    for(auto& i : v) row(i);
+                    foot(_cols);
+                    cout << "Displaying " << v.size() << " record(s).\n\n";
+                }
+            }else if(input == "HELP"){
+                help();
+            }else cout << "ERROR: Command not found!\n\n";
+        }
+    }while(input != "EXIT");
+    outro();
     return 0;
 }

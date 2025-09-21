@@ -3,13 +3,21 @@
 class Device : public Electronic {
 protected:
     string brand;
-    int warranty;  // in months
-    int power;     // watt
+    int warranty;
+    int power;
 
 public:
-    Device() : Electronic(), brand(""), warranty(0), power(0) {}
-    Device(int id, string name, string category, int price, string brand, int warranty, int power)
-        : Electronic(id, name, category, price), brand(brand), warranty(warranty), power(power) {}
+    Device () {
+        brand = "";
+        warranty = 0;
+        power = 0;
+    };
+
+    Device (string brand, int warranty, int power) {
+        this->brand = brand;
+        this->warranty = warranty;
+        this->power = power;
+    }
 
     void setBrand(string brand) { this->brand = brand; }
     string getBrand() const { return brand; }
@@ -20,10 +28,10 @@ public:
     void setPower(int power) { this->power = power; }
     int getPower() const { return power; }
 
-    void showInfo() override {
-        Electronic::showInfo();
-        cout << "Brand: " << brand << ", Warranty: " << warranty << " months, Power: " << power << "W";
-    }
+    // void showInfo() override {
+    //     Electronic::showInfo();
+    //     cout << "Brand: " << brand << ", Warranty: " << warranty << " months, Power: " << power << "W";
+    // }
 
     ~Device() {}
 };
