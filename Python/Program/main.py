@@ -158,14 +158,6 @@ def main():
 
             data = SmartDevice(idx, name, price, stock, brand, warranty, power, os, storage, ram)
             v.append(data); idx += 1
-            # parts = str.split('"')
-            # name = parts[1].strip()
-            # category = parts[3].strip()
-            # price = int(parts[4].strip())
-        
-            # elc = Electronic(idx, name, category, price)
-            # v.append(elc)
-            # idx += 1
             print("SUCCESS: A new data has been added, lalala yeyeyeye~\n")
 
         elif in_cmd == "SHOW":
