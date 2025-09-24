@@ -118,7 +118,7 @@ void help() {
     cout << "||                                                                        ||\n";
     cout << "||                                                                        ||\n";
     cout << "|+------------------------------------------------------------------------+|\n";
-    cout << "============================================================================\n";
+    cout << "============================================================================\n\n";
 }
 
 // Procedure to print the header
@@ -199,26 +199,6 @@ void cLeng(vector<SmartDevice> v){
 }
 
 int main(){
-    // // cout << "=== Electronic ===\n";
-    // Electronic e1(1, "Laptop", "Computer", 7500000);
-    // e1.showInfo();
-    // cout << "\n\n";
-
-    // // cout << "=== Device ===\n";
-    // Device d1(2, "Smartphone", "Gadget", 5000000, "Samsung", 24, 15);
-    // d1.showInfo();
-    // cout << "\n\n";
-
-    // // cout << "=== SmartDevice ===\n";
-    // SmartDevice s1(3, "Tablet", "Gadget", 6000000, "Apple", 12, 10, "iPadOS", 256, 8);
-    // s1.showInfo();
-    // cout << "\n\n";
-
-    // // cout << "=== Polymorphism ===\n";
-    // Electronic* e2 = new SmartDevice(4, "Smart TV", "Entertainment", 10000000, "LG", 24, 150, "webOS", 512, 16);
-    // e2->showInfo(); 
-    // cout << "\n";
-
     int idx = 6;
     vector<SmartDevice> v;
     

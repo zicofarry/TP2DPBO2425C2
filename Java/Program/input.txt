@@ -1,0 +1,2 @@
+INSERT "Iphone 13 Pro" 15000000 30 "Apple" 12 20 "IOS 15" 512 8
+INSERT "Redmi Note 14" 6000000 20 "Xiaomi" 24 25 "Android 14" 512 8
