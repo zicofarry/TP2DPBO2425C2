@@ -132,7 +132,8 @@ Program terdiri dari __3__ class, yaitu __Electronic__, __Device__, dan __SmartD
 
 ## PHP
 <div>
-    <a>Klik untuk melihat vidio dokumentasi</a><br><br>
-    <a href="https://youtu.be/3H8kubvpiJM"><img src="https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white" /></a>
-    <video src="Dokumentasi/php/php.mkv" controls width="600"></video>
+    <img src="PHP/Dokumentasi/php1.png" style="width: 49%;">
+    <img src="PHP/Dokumentasi/php2.png" style="width: 49%;">
+    <img src="PHP/Dokumentasi/php3.png" style="width: 49%;">
+    <img src="PHP/Dokumentasi/php4.png" style="width: 49%;">
 </div>

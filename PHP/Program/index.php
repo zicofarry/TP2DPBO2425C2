@@ -8,13 +8,13 @@ if (session_status() == PHP_SESSION_NONE) { session_start(); }
 if (!isset($_SESSION['list'])) {
     $_SESSION['list'] = [
         new SmartDevice(1, "Galaxy S24", 15000000, 21, "samsung.jpg", "Samsung", 24, 25, "Android 14", 256, 12),
-        new SmartDevice(2, "iPhone 15 Pro", 20000000, 22, "ip13pm.jpg", "Apple", 12, 20, "iOS 17", 512, 8),
-        new SmartDevice(3, "ThinkPad X1", 25000000, 23, "tes.jpg", "Lenovo", 36, 65, "Windows 11", 1024, 32),
-        new SmartDevice(4, "iPad Air 5", 12000000, 24, "ip13pm.jpg", "Apple", 18, 30, "iPadOS 17", 256, 8),
+        new SmartDevice(2, "iPhone 15 Pro", 20000000, 22, "ip15.webp", "Apple", 12, 20, "iOS 17", 512, 8),
+        new SmartDevice(3, "ThinkPad X1", 25000000, 23, "think.jpeg", "Lenovo", 36, 65, "Windows 11", 1024, 32),
+        new SmartDevice(4, "iPad Air 5", 12000000, 24, "ipad.webp", "Apple", 18, 30, "iPadOS 17", 256, 8),
         new SmartDevice(5, "LG OLED CX", 18000000, 25, "lg.jpg", "LG", 24, 150, "webOS", 512, 16)
     ];
 }
-if (!isset($_SESSION['newId'])) { $_SESSION['newId'] = 1; }
+if (!isset($_SESSION['newId'])) { $_SESSION['newId'] = 6; }
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -246,10 +246,17 @@ $images = glob('images/*.*', GLOB_BRACE);
     <nav class="card flex justify-between items-center px-8 h-[10vh] shadow-md sticky top-0 z-20 border-b">
         <h1 class="font-bold text-xl">⚡ Electronics Shop</h1>
         <div class="flex items-center gap-4">
-            <button id="mode-toggle" class="focus:outline-none p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+            <!-- <button id="mode-toggle" class="focus:outline-none p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
                 <svg id="mode-icon-cli" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l4-4 4 4m0 6l-4 4-4-4" /><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" /></svg>
                 <svg id="mode-icon-form" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+            </button> -->
+            <button id="mode-toggle" class="focus:outline-none p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                <svg id="cli-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M8 9l3 3-3 3m5 0h3M5 5h14v14H5z"/>
+                </svg>
             </button>
+
             <button id="theme-toggle" class="focus:outline-none p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
                 <svg id="theme-icon-light" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m8.66-15.66l-.7.7M4.04 19.96l-.7.7M21 12h-1M4 12H3m15.66 8.66l-.7-.7M4.04 4.04l-.7-.7M12 18a6 6 0 100-12 6 6 0 000 12z"></path></svg>
                 <svg id="theme-icon-dark" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
@@ -271,11 +278,11 @@ $images = glob('images/*.*', GLOB_BRACE);
         </div>
     </aside>
     <main class="w-full flex h-[90vh] justify-between container mx-auto p-8 gap-8">
-        <section class="w-2/3 h-full overflow-y-auto card shadow-lg rounded-lg border">
+        <section id="table-section" class="w-2/3 h-full overflow-y-auto card shadow-lg rounded-lg border">
             <div id="table-container">
                 </div>
         </section>
-        <section class="w-1/3 h-full">
+        <section id="cli-section" class="w-1/3 h-full">
             <div id="cli-view" class="flex flex-col justify-between h-full card bg-gray-900 dark:bg-black p-4 rounded-lg shadow-lg">
             <!-- <div id="cli-view" class="flex-col justify-between h-full bg-gray-900 text-gray-200 p-4 rounded-lg shadow-lg"> -->
                 <div>
@@ -384,6 +391,9 @@ $images = glob('images/*.*', GLOB_BRACE);
 
         // Mode Toggle
         const modeToggle = document.getElementById('mode-toggle');
+        const tableSection = document.getElementById("table-section");
+        const cliSection = document.getElementById("cli-section");
+        let cliVisible = true;
         const cliIcon = document.getElementById('mode-icon-cli');
         const formIcon = document.getElementById('mode-icon-form');
 
@@ -442,10 +452,28 @@ $images = glob('images/*.*', GLOB_BRACE);
                 formIcon.classList.add('hidden');
             }
         }
-        modeToggle.addEventListener('click', () => {
-            const newMode = cliView.style.display === 'none' ? 'cli' : 'form';
-            applyInputMode(newMode);
+        // mode kalo ada form
+        // modeToggle.addEventListener('click', () => {
+        //     const newMode = cliView.style.display === 'none' ? 'cli' : 'form';
+        //     applyInputMode(newMode);
+        // });
+
+        // mode cli toggle
+        modeToggle.addEventListener("click", () => {
+        if (cliVisible) {
+            // CLI disembunyikan -> table full
+            cliSection.classList.add("hidden");
+            tableSection.classList.remove("w-2/3");
+            tableSection.classList.add("w-full");
+        } else {
+            // CLI ditampilkan -> table 2/3
+            cliSection.classList.remove("hidden");
+            tableSection.classList.remove("w-full");
+            tableSection.classList.add("w-2/3");
+        }
+        cliVisible = !cliVisible;
         });
+
 
         // --- CLI Logic ---
         cliInput.addEventListener('keydown', function(event) {
