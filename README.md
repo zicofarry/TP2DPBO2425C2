@@ -50,7 +50,10 @@ Main
 │   │       └── *.jpg
 │   │
 │   └── Dokumentasi/
-│       └── php.mp4
+│       ├── php1.png
+│       ├── php2.png
+│       ├── php3.png
+│       └── php4.png
 │
 └── README.md
 ```
