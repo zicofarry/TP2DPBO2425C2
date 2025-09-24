@@ -55,6 +55,7 @@ Main
 │       ├── php3.png
 │       └── php4.png
 │
+├── Diagram.png
 └── README.md
 ```
 
@@ -62,7 +63,7 @@ Main
 <img src="Diagram.png" style="width: 100%;">
 
 # Desain
-Program terdiri dari __3__ class, yaitu __Electronic__, __Device__, dan __SmartDevice__. Program menggunakan Multilevel Inheritance, dengan __Electronic__ sebagai class induk, dilanjutkan dengan __Device__, dan __SmartDevice__ sebagai class paling bawah. Urutan inheritance ini dibuat karena class Electronic memiliki atribut paling general di antara ketiganya dan class SmartDevice yang memiliki atribut paling spesifik pula. Berikut masing-masing atribut class:
+Program mencakup __3__ class, yaitu __Electronic__, __Device__, dan __SmartDevice__. Program ini menerapkan __Multilevel Inheritance__, dengan __Electronic__ sebagai class dasar, kemudian __Device__, dan terakhir __SmartDevice__ sebagai class turunan paling bawah. Susunan inheritance tersebut dipilih karena class Electronic menyimpan atribut yang paling umum di antara ketiganya, sedangkan class SmartDevice memiliki atribut yang paling khusus. Berikut atribut dari masing-masing class:
 - Electronic:
   - ID
   - Name
