@@ -113,18 +113,21 @@ Program terdiri dari __3__ class, yaitu __Electronic__, __Device__, dan __SmartD
 <div>
     <img src="CPP/Dokumentasi/cpp1.png" style="width: 49%;">
     <img src="CPP/Dokumentasi/cpp2.png" style="width: 49%;">
+    <img src="CPP/Dokumentasi/cpp3.png" style="width: 49%;">
 </div>
 
 ## JAVA
 <div>
     <img src="Java/Dokumentasi/java1.png" style="width: 49%;">
     <img src="Java/Dokumentasi/java2.png" style="width: 49%;">
+    <img src="Java/Dokumentasi/java3.png" style="width: 49%;">
 </div>
 
 ## PYTHON
 <div>
     <img src="Python/Dokumentasi/py1.png" style="width: 49%;">
     <img src="Python/Dokumentasi/py2.png" style="width: 49%;">
+    <img src="Python/Dokumentasi/py3.png" style="width: 49%;">
 </div>
 
 ## PHP
